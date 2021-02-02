@@ -1,0 +1,89 @@
+<html>
+	<head>
+	<title>Out of touch</title>
+    <link rel="manifest" href="manifest.json"> 
+		<style>
+		.obraz{
+            width: 96px;
+            height: 96px;
+            background-image: url("logo64.png");
+            position: absolute;
+        }
+		body{
+		width:100%;
+		height:100%;
+		}
+		</style>
+	</head>
+	<body>
+	<textarea id="notatki" name="notatki" rows="20" cols="30">
+	
+	</textarea>
+		<script>
+		t_ar = document.getElementById("notatki");
+		el = document.body;
+		el.addEventListener("touchstart",klik, false);
+		
+		el.addEventListener("touchmove",przes,false);
+		el.addEventListener("touchend", odKlik,false);
+		
+		function przes(){
+		tekst = "";
+		tekst +="przes";
+		t_ar.value = tekst;
+		}
+		
+		function odKlik(){
+		tekst = "";
+		tekst += "odKlik";
+		t_ar.value=tekst;
+		}
+		
+		function klik(){
+		tekst ="";
+		tekst+=klik;
+		t_ar.value = tekst;
+		}
+		window.onload = () => {
+    const el = document.body
+    el.addEventListener("touchend", touchEnd, false);
+    el.addEventListener("touchstart", function (ev) {
+        const t_ar = document.getElementById("notatki");
+        const dotyk = ev.changedTouches.item(0);
+        const wielkoscKlik = "pozycja dotyku pozycja X: " + dotyk.clientX + " punkt dotyku pozycja Y: "
+        + dotyk.clientY + " promien elipsy X: " + dotyk.radiusX + " promien elipsy Y: " + dotyk.radiusY + " obrót " + dotyk.rotationAngle;
+
+        if (ev.touches.item(0) === ev.targetTouches.item(0)) {
+            t_ar.value = "Dotknij ekran!";
+        }
+
+        if (ev.touches.length === ev.targetTouches.length) {
+            t_ar.value = "Wszystkie punkty dostępu znajdują się na elemencie docelowym " + wielkoscKlik;
+        }
+
+        if (ev.touches.length > 1) {
+            let tekst = "Dotknięto w wielu miejscach: " + ev.touches.length + " miejsc dotyku";
+            for (let i = 0; i < ev.touches.length; i++) {
+                tekst += "\n Pozycja X" + i + ": " + ev.touches[i].screenX;
+                tekst += "\n Pozycja Y" + i + ": " + ev.touches[i].screenY;
+            }
+
+            for (let i = 0; i < ev.targetTouches.length; i++) {
+                tekst += "\n nacisk: " + i + ": " + ev.targetTouches[i].force; // Siła nacisku od 0 do 1
+            }
+
+            t_ar.value = tekst;
+        }
+    }, false);
+}
+
+function touchEnd() {
+    const tekst = "odKlik";
+
+    const t_ar = document.getElementById("notatki");
+    t_ar.value = tekst;
+}
+
+		</script>
+	</body>
+</html>
