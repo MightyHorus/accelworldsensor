@@ -18,10 +18,10 @@
 		t_ar.value ="\n przyśpieszenie na osi w m/s x:"+sensor.x;
 		t_ar.value ="\n przyśpieszenie na osi w m/s y:"+sensor.y;
 		t_ar.value ="\n przyśpieszenie na osi w m/s z:" +sensor.z;
-		if (sensor.y=> 7 || sensor.y <= -7){
+		if (sensor.y> 7 || sensor.y < -7){
 		t_ar.value ="\n TELEFON W PIONIE";
 		}
-		if (sensor.x=> 7 || sensor.x <= -7){
+		if (sensor.x> 7 || sensor.x < -7){
 		t_ar.value ="\n TELEFON W wertykalnie";
 		}
 		</script>
