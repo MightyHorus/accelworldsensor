@@ -13,17 +13,32 @@
 		<script>
 		t_ar = document.getElementById("notatki");
 		sensor = new Accelerometer();
+		var xmax=0;
+		var ymax=0;
+		var zmax=0;
 		sensor.start();
 		sensor.onreading = () => {
 		t_ar.value ="\n przyśpieszenie na osi w m/s x:"+sensor.x;
-		t_ar.value ="\n przyśpieszenie na osi w m/s y:"+sensor.y;
-		t_ar.value ="\n przyśpieszenie na osi w m/s z:" +sensor.z;
+		t_ar.value +="\n przyśpieszenie na osi w m/s y:"+sensor.y;
+		t_ar.value +="\n przyśpieszenie na osi w m/s z:" +sensor.z;
 		if (sensor.y> 7 || sensor.y < -7){
-		t_ar.value ="\n TELEFON W PIONIE";
+		t_ar.value +="\n TELEFON W PIONIE";
 		}
 		if (sensor.x> 7 || sensor.x < -7){	
-		t_ar.value ="\n TELEFON W wertykalnie";
+		t_ar.value +="\n TELEFON W wertykalnie";
 		}
+		
+		if(sensor.x>xmax)
+		sensor.x=xmax;
+		t_ar.value +="\n Max:" = xmax;
+		}
+		if(sensor.y>ymax)
+		sensor.y=ymax;
+		t_ar.value +="\n Max:" = ymax;
+		}
+		if(sensor.z>zmax)
+		sensor.z=zmax;
+		t_ar.value +="\n Max:" = zmax;
 		}
 		</script>
 	</body>
