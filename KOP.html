@@ -1,0 +1,40 @@
+<html>
+	<head>
+	<title>Accel World</title>
+    <link rel="manifest" href="manifest.json"> 
+		<style>
+
+		</style>
+	</head>
+	<body>
+	<textarea id="notatki" name="notatki" rows="20" cols="100">
+	</textarea>
+	<a id="mapa">test</a>
+<script>
+            t_ar = document.getElementById("notatki");
+            function gps_1(){
+                tekst = "";
+                t_ar.value=tekst;
+                const mapLink = document.getElementById("mapa");
+                mapLink.href='';
+                mapLink.textContent='';
+                function mapka(pozycja){
+                    const latitude = pozycja.coords.latitude;
+                    const longitude = pozycja.coords.longitude;
+                    mapLink.href=`https://www.openstreetmap.org/#map=18/${latitude}/${longitude}`;
+                    mapLink.textContent += `Latitude: ${latitude} *, Longitude: ${longitude} *`;
+                }
+                navigator.geolocation.getCurrentPosition(mapka);
+                var geoGPS = function(pozycja){
+                    startPos = pozycja;
+                    t_ar.value += "\n Współrzędne gps: \n " + startPos.coords.latitude + "\n ";
+                    t_ar.value += startPos.coords.longitude;
+                }
+                navigator.geolocation.getCurrentPosition(geoGPS);
+                setTimeout(gps_1, 10000);
+            }
+            gps_1();
+        </script>
+
+	</body>
+</html>
